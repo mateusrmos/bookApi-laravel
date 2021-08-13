@@ -13,8 +13,10 @@ class CreateBookModel extends Migration
      */
     public function up()
     {
-        Schema::create('book_model', function (Blueprint $table) {
+        Schema::create('books', function (Blueprint $table) {
             $table->id();
+            $table->string('title', 255);
+            $table->date('launchDate');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateBookModel extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('book_model');
+        Schema::dropIfExists('books');
     }
 }
