@@ -42,7 +42,7 @@ class AuthorController extends Controller
         $author->name = $request->request->get('name');
         $author->birthdate = $request->request->get('birthdate');
         $author->save();
-        return new Response(['info' => $author]);
+        return new Response(['info' => $author], Response::HTTP_CREATED);
     }
 
     public function updateAuthor(Author $author, Request $request)

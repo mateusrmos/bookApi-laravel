@@ -72,7 +72,7 @@ class BookController extends Controller
         $book->launchDate = $request->request->get('launchDate');
         $book->author = $request->request->get('author');
         $book->save();
-        return new Response(['info' => $book->load('author')]);
+        return new Response(['info' => $book->load('author')], Response::HTTP_CREATED);
     }
 
     /**
