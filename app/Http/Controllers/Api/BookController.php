@@ -18,7 +18,7 @@ class BookController extends Controller
     {
         return [
             'title' =>   ['required', 'min:3', 'max:255'],
-            'launchDate' => ['required', 'date'],
+            'launchDate' => ['required', 'date', 'date_format:Y-m-d'],
             'author' => ['required', 'exists:authors,id']
         ];
     }
@@ -38,9 +38,9 @@ class BookController extends Controller
         $author = $request->request->get('author');
         $bookList = array();
         if (!empty($author)) {
-            $bookList = Book::with('author')->where(compact('author'))->get();
+            $bookList = Book::with('author')->where(compact('author'))->orderBy('id', 'DESC')->get();
         } else {
-            $bookList = Book::with('author')->get();
+            $bookList = Book::with('author')->orderBy('id', 'DESC')->get();
         }
 
         return new Response(['list' => $bookList]);

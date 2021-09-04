@@ -17,13 +17,13 @@ class AuthorController extends Controller
     {
         return [
             'name' => ['required', 'min:3', 'max:255'],
-            'birthdate' => ['required', 'date']
+            'birthdate' => ['required', 'date', 'date_format:Y-m-d']
         ];
     }
 
     public function list()
     {
-        $list = Author::all();
+        $list = Author::orderBy('id', 'DESC')->get();
         return new Response(['list' => $list]);
     }
 
